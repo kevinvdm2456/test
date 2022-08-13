@@ -1,1 +1,1 @@
-local whitelistClientIDs = {id, id}
+local whitelistUserIDs = {id, id}
