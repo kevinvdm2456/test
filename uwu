@@ -31,18 +31,16 @@ Frame2.Size = UDim2.new(0, 240, 0, 90)
 UICorner2.Parent = Frame2
 
 KillsCount.Parent = Frame2
-KillsCount.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 KillsCount.BackgroundTransparency = 1.000
 KillsCount.Position = UDim2.new(0.0411666669, 0, 0.543333352, 0)
 KillsCount.Size = UDim2.new(0, 100, 0, 25)
 KillsCount.Font = Enum.Font.GothamMedium
 KillsCount.Text = ""
-KillsCount.TextColor3 = Color3.fromRGB(66, 66, 66) 
+KillsCount.TextColor3 = Color3.fromRGB(255, 255, 255) 
 KillsCount.TextSize = 14.000
 KillsCount.TextXAlignment = Enum.TextXAlignment.Left
 
 UserName.Parent = Frame2
-UserName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 UserName.BackgroundTransparency = 1.000
 UserName.Position = UDim2.new(0.233999997, 0, 0.270000011, 0)
 UserName.Size = UDim2.new(0, 100, 0, 25)
@@ -53,18 +51,16 @@ UserName.TextSize = 14.000
 UserName.TextXAlignment = Enum.TextXAlignment.Left
 
 DeathsCount.Parent = Frame2
-DeathsCount.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 DeathsCount.BackgroundTransparency = 1.000
 DeathsCount.Position = UDim2.new(0.0411666669, 0, 0.712222219, 0)
 DeathsCount.Size = UDim2.new(0, 100, 0, 25)
 DeathsCount.Font = Enum.Font.GothamMedium
 DeathsCount.Text = ""
-DeathsCount.TextColor3 = Color3.fromRGB(66, 66, 66)
+DeathsCount.TextColor3 = Color3.fromRGB(255, 255, 255)
 DeathsCount.TextSize = 14.000
 DeathsCount.TextXAlignment = Enum.TextXAlignment.Left
 
 DisName.Parent = Frame2
-DisName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 DisName.BackgroundTransparency = 1.000
 DisName.Position = UDim2.new(0.231333345, 0, 0.08, 0)
 DisName.Size = UDim2.new(0, 100, 0, 25)
