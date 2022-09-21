@@ -80,7 +80,6 @@ UICorner3.Parent = Profile
 local players = game:GetService("Players")
 local mouse = players.LocalPlayer:GetMouse()
 local uip = game:GetService("UserInputService")
-local mouseloc = uip:GetMouseLocation()
 
 local conn = {}
 game:GetService("RunService").Heartbeat:Connect(function()
@@ -96,6 +95,7 @@ target = players:GetPlayerFromCharacter(target)
     return
   end
 Frame.Visible = true
+local mouseloc = uip:GetMouseLocation()
 Frame.Position = UDim2.fromOffset(mouseloc.X, mouseloc.Y)
   
 for _ , c in pairs(conn) do
