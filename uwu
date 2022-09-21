@@ -47,6 +47,7 @@ UserName.Size = UDim2.new(0, 100, 0, 25)
 UserName.Font = Enum.Font.GothamMedium
 UserName.Text = ""
 UserName.TextColor3 = Color3.fromRGB(66, 66, 66)
+UserName.TextScaled = true
 UserName.TextSize = 14.000
 UserName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -67,6 +68,7 @@ DisName.Size = UDim2.new(0, 100, 0, 25)
 DisName.Text = ""
 DisName.Font = Enum.Font.GothamMedium
 DisName.TextColor3 = Color3.fromRGB(255, 255, 255)
+DisName.TextScaled = true
 DisName.TextSize = 20.000
 DisName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -80,33 +82,42 @@ UICorner3.Parent = Profile
 
 local players = game:GetService("Players")
 local mouse = players.LocalPlayer:GetMouse()
+local uip = game:GetService("UserInputService")
+local mouseloc = uip:GetMouseLocation()
 
 local conn = {}
-mouse.Button1Down:Connect(function()
-    local target = mouse.Target:FindFirstAncestorOfClass("Model") 
-    if target then
-        local targetplayer = players:GetPlayerFromCharacter(target)
-        if targetplayer:IsA("Player") then
-            for _ , c in pairs(conn) do
-               c:Disconnect()
-            end
-            
-            local kills = targetplayer.Kills
-            KillsCount.Text = "Kills: "..kills.Value
-            conn[#conn + 1] = kills:GetPropertyChangedSignal("Value"):Connect(function()
-                KillsCount.Text = "Kills: "..kills.Value
-            end) 
+game:GetService("RunService").Heartbeat:Connect(function()
+    local target = mouse.Target:FindFirstAncestorOfClass("Model")
+        if not target then
+        Frame.Visible = false
+    return 
+end
+  
+target = players:GetPlayerFromCharacter(target)
+  if not target:IsA("Player") then
+    Frame.Visible = false
+    return
+  end
+Frame.Visible = true
+Frame.Position = UDim2.fromOffset(mouseloc.X, mouseloc.Y)
+  
+for _ , c in pairs(conn) do
+    c:Disconnect()
+end
+local kills = target.Kills
+KillsCount.Text = "Kills: "..kills.Value
+conn[#conn + 1] = kills:GetPropertyChangedSignal("Value"):Connect(function()
+    KillsCount.Text = "Kills: "..kills.Value
+end) 
 
-            local deaths = targetplayer.Deaths
-            DeathsCount.Text = "Deaths: "..deaths.Value 
-            conn[#conn + 1] = deaths:GetPropertyChangedSignal("Value"):Connect(function()
-                DeathsCount.Text = "Deaths: "..deaths.Value 
-            end) 
+local deaths = target.Deaths
+DeathsCount.Text = "Deaths: "..deaths.Value 
+conn[#conn + 1] = deaths:GetPropertyChangedSignal("Value"):Connect(function()
+    DeathsCount.Text = "Deaths: "..deaths.Value 
+end) 
 
-                        DisName.Text = targetplayer.DisplayName
-            UserName.Text = "@"..targetplayer.Name
-            Profile.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..targetplayer.UserId.."&width=420&height=420&format=png" 
-            Profile.Visible = true
-        end
-    end
+DisName.Text = target.DisplayName
+UserName.Text = "@"..target.Name
+Profile.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..target.UserId.."&width=420&height=420&format=png" 
+Profile.Visible = true
 end)
