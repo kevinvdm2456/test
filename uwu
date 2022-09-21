@@ -46,6 +46,7 @@ UserName.Size = UDim2.new(0, 100, 0, 25)
 UserName.Font = Enum.Font.GothamMedium
 UserName.Text = ""
 UserName.TextColor3 = Color3.fromRGB(66, 66, 66)
+UserName.TextScaled = true
 UserName.TextSize = 14.000
 UserName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -66,6 +67,7 @@ DisName.Size = UDim2.new(0, 100, 0, 25)
 DisName.Text = ""
 DisName.Font = Enum.Font.GothamMedium
 DisName.TextColor3 = Color3.fromRGB(255, 255, 255)
+DisName.TextScaled = true
 DisName.TextSize = 20.000
 DisName.TextXAlignment = Enum.TextXAlignment.Left
 
