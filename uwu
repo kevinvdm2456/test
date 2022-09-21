@@ -85,27 +85,32 @@ UICorner3.Parent = Profile
 local players = game:GetService("Players")
 local mouse = players.LocalPlayer:GetMouse()
 
+local conn = {}
 mouse.Button1Down:Connect(function()
-	local target = mouse.Target:FindFirstAncestorOfClass("Model") 
-	if target then
-		local targetplayer = players:GetPlayerFromCharacter(target)
-		if targetplayer:IsA("Player") then
-			local kills = targetplayer.Kills
-			KillsCount.Text = "Kills: "..kills.Value
-			kills:GetPropertyChangedSignal("Value"):Connect(function()
-			    KillsCount.Text = "Kills: "..kills.Value
-			end) 
+    local target = mouse.Target:FindFirstAncestorOfClass("Model") 
+    if target then
+        local targetplayer = players:GetPlayerFromCharacter(target)
+        if targetplayer:IsA("Player") then
+            for _ , c in pairs(conn) do
+               c:Disconnect()
+            end
+            
+            local kills = targetplayer.Kills
+            KillsCount.Text = "Kills: "..kills.Value
+            conn[#conn + 1] = kills:GetPropertyChangedSignal("Value"):Connect(function()
+                KillsCount.Text = "Kills: "..kills.Value
+            end) 
 
-			local deaths = targetplayer.Deaths
-			DeathsCount.Text = "Deaths: "..deaths.Value 
-			deaths:GetPropertyChangedSignal("Value"):Connect(function()
-			    DeathsCount.Text = "Deaths: "..deaths.Value 
-			end) 
+            local deaths = targetplayer.Deaths
+            DeathsCount.Text = "Deaths: "..deaths.Value 
+            conn[#conn + 1] = deaths:GetPropertyChangedSignal("Value"):Connect(function()
+                DeathsCount.Text = "Deaths: "..deaths.Value 
+            end) 
 
                         DisName.Text = targetplayer.DisplayName
-			UserName.Text = "@"..targetplayer.Name
-			Profile.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..targetplayer.UserId.."&width=420&height=420&format=png" 
-			Profile.Visible = true
-		end
-	end
+            UserName.Text = "@"..targetplayer.Name
+            Profile.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..targetplayer.UserId.."&width=420&height=420&format=png" 
+            Profile.Visible = true
+        end
+    end
 end)
